@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registration Form</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+      }
+      .container {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 300px;
+      }
+      input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+      button {
+        width: 100%;
+        padding: 10px;
+        background: #28a745;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #218838;
+      }
+      .error {
+        color: red;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Register</h2>
+      <form id="registrationForm">
+        <input type="text" id="username" placeholder="Username" required />
+        <span class="error" id="userError"></span>
+        <input type="email" id="email" placeholder="Email" required />
+        <span class="error" id="emailError"></span>
+        <input type="password" id="password" placeholder="Password" required />
+        <span class="error" id="passError"></span>
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+
+    <script>
+      document
+        .getElementById("registrationForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+          let valid = true;
+          document.getElementById("userError").textContent = "";
+          document.getElementById("emailError").textContent = "";
+          document.getElementById("passError").textContent = "";
+
+          let username = document.getElementById("username").value;
+          let email = document.getElementById("email").value;
+          let password = document.getElementById("password").value;
+
+          if (username.length < 3) {
+            document.getElementById("userError").textContent =
+              "Username must be at least 3 characters";
+            valid = false;
+          }
+          if (!email.includes("@")) {
+            document.getElementById("emailError").textContent =
+              "Enter a valid email";
+            valid = false;
+          }
+          if (password.length < 6) {
+            document.getElementById("passError").textContent =
+              "Password must be at least 6 characters";
+            valid = false;
+          }
+
+          if (valid) {
+            alert("Registration successful!");
+          }
+        });
+    </script>
+  </body>
+</html>
